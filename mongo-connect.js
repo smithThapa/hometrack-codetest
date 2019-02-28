@@ -23,7 +23,6 @@ client.connect(err => {
         return console.log('Unable to connect to MongoDB server');
     }
     console.log('Connected to MongoDB server');
-    db = client.db("Payload");
 });
 
 app.use(bodyParser.json());
@@ -33,7 +32,7 @@ app.post('/payload', (req, res) => {
     let error = false;
 
     req.body.payload.forEach(payload => {
-        db.collection('payload').insertOne(payload,
+        client.db("Payload").collection('payload').insertOne(payload,
              (err, result) => {
                     if(err){
                         error = true;
@@ -43,7 +42,7 @@ app.post('/payload', (req, res) => {
     })
 
     if(!error){
-        db.collection('payload').find(
+        client.db("Payload").collection('payload').find(
             {"type": "htv",
             "workflow": "completed"}).toArray().then((docs) => {
                 for (let index = 0; index < docs.length; index++) {
