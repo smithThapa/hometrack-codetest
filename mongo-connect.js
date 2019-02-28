@@ -4,19 +4,10 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const port = process.env.PORT || 3000;
-let db;
-
-// MongoClient.connect('mongodb+srv://smith_thapa:<Lukaku88>@cluster0-tl71f.mongodb.net/test?retryWrites=true'
-//  ||  'mongodb://localhost:27017/Payload', (err,client) => {
-//     if (err){
-//         return console.log('Unable to connect to MongoDB server');
-//     }
-//     console.log('Connected to MongoDB server');
-//     db = client.db('Payload');
-// })
 
 
-const uri = 'mongodb+srv://smith_thapa:Lukaku88_@cluster0-tl71f.mongodb.net/test?retryWrites=true'; 
+const uri = 'mongodb+srv://smith_thapa:Lukaku88_@cluster0-tl71f.mongodb.net/test?retryWrites=true' 
+|| 'mongodb://localhost:27017/Payload'; 
 const client = new MongoClient(uri, { useNewUrlParser: true });
 client.connect(err => {
      if (err){
@@ -62,7 +53,7 @@ app.post('/payload', (req, res) => {
                 let responseObj = {
                     "response": payloadArray
                 }
-                console.log("yolo");
+                res.send(JSON.stringify(responseObj,undefined,2));
                 console.log(JSON.stringify(responseObj,undefined,2));
             }, (err) => {
                 console.log('Unable to fetch payloads',err);
