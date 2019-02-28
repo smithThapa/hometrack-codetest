@@ -6,7 +6,8 @@ const app = express();
 const port = process.env.PORT || 3000;
 let db;
 
-MongoClient.connect('mongodb://localhost:27017/Payload', (err,client) => {
+MongoClient.connect('mongodb+srv://smith_thapa:<Lukaku88>@cluster0-tl71f.mongodb.net/test?retryWrites=true'
+ ||  'mongodb://localhost:27017/Payload', (err,client) => {
     if (err){
         return console.log('Unable to connect to MongoDB server');
     }
