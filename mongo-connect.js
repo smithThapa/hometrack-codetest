@@ -6,14 +6,25 @@ const app = express();
 const port = process.env.PORT || 3000;
 let db;
 
-MongoClient.connect('mongodb+srv://smith_thapa:<Lukaku88>@cluster0-tl71f.mongodb.net/test?retryWrites=true'
- ||  'mongodb://localhost:27017/Payload', (err,client) => {
-    if (err){
+// MongoClient.connect('mongodb+srv://smith_thapa:<Lukaku88>@cluster0-tl71f.mongodb.net/test?retryWrites=true'
+//  ||  'mongodb://localhost:27017/Payload', (err,client) => {
+//     if (err){
+//         return console.log('Unable to connect to MongoDB server');
+//     }
+//     console.log('Connected to MongoDB server');
+//     db = client.db('Payload');
+// })
+
+
+const uri = "mongodb+srv://smith_thapa:<Lukaku88>@cluster0-tl71f.mongodb.net/test?retryWrites=true";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+     if (err){
         return console.log('Unable to connect to MongoDB server');
     }
     console.log('Connected to MongoDB server');
-    db = client.db('Payload');
-})
+    db = client.db("Payload");
+});
 
 app.use(bodyParser.json());
 
