@@ -16,7 +16,7 @@ let db;
 // })
 
 
-const uri = " mongodb://heroku_587kns8z:a2iebn99i3lfp0mg31g885ul4n@ds155665.mlab.com:55665/heroku_587kns8z";
+const uri = process.env.MONGODB_URI; 
 const client = new MongoClient(uri, { useNewUrlParser: true });
 client.connect(err => {
      if (err){
