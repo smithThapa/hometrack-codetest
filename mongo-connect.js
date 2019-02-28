@@ -16,7 +16,7 @@ let db;
 // })
 
 
-const uri = process.env.MONGODB_URI; 
+const uri = 'mongodb+srv://smith_thapa:<Lukaku88_>@cluster0-tl71f.mongodb.net/test?retryWrites=true'; 
 const client = new MongoClient(uri, { useNewUrlParser: true });
 client.connect(err => {
      if (err){
